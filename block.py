@@ -16,3 +16,6 @@ class Block:
         sha.update(f'{self.index}{self.previous_hash}{self.timestamp}{self.transactions}{self.proof}'.encode())
         return sha.hexdigest()
 
+    def recalculate_hash(self):
+        self.hash = self.hash_block()
+
