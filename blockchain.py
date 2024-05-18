@@ -11,6 +11,7 @@ class Blockchain:
 
     @staticmethod
     def create_genesis_block():
+        print("Tworzenie bloku genesis")
         return Block(0, '0', [], 100)
 
     def proof_of_work(self, last_proof, last_hash):
@@ -41,6 +42,7 @@ class Blockchain:
     def add_transaction(self, sender, recipient, amount):
         transaction = Transaction(sender, recipient, amount)
         self.current_transactions.append(transaction)
+        print(f"Dodano nową transakcję od: {sender} do: {recipient} na kwotę: {amount}")
 
     def add_block(self):
         if self.validate_chain():
@@ -53,7 +55,6 @@ class Blockchain:
             print(f"Dodano nowy blok #{new_block.index} Hash: {new_block.hash}")
         else:
             raise ValueError("Nieprawidłowy łańcuch, nie można dodać nowego bloku")
-
 
     def get_chain(self):
         return [(block.index, block.timestamp, block.transactions, block.hash) for block in self.chain]
